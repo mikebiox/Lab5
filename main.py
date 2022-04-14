@@ -1,6 +1,19 @@
 import random
 
+def is_numeric(num):
+  """
+  This will return true if num is an int
+  """
+  return isinstance(num, int)
+
 def guess_number(random_number, top_range):
+  """
+  This will get a guess from the users and let them know if
+  - the guess is too high
+  - the guess is too low
+  - the guess is correct
+  It will then prompt them to play again
+  """
   guess = int(input("Guess a number between 0 and " + str(top_range) + ": "))
 
   if guess < random_number:
@@ -20,7 +33,17 @@ def guess_number(random_number, top_range):
 
     
 def play_game():
-  top_range = int(input("Enter a number: "))
+  """
+  This will :
+  - get input (int) from the user
+  - generate a random number between 0 and input from user
+  - call the guess_number function
+  """
+  try: 
+    top_range = int(input("Enter a number: "))
+  except ValueError:
+    print ("You must enter a valid number")
+    play_game()
   
   if (top_range < 1):
     print ("Number must be greater than 0")
